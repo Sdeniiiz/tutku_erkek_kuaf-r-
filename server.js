@@ -29,9 +29,9 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // Parse clean pathname (remove query params)
-  const parsedUrl = url.parse(req.url);
-  let pathname = decodeURIComponent(parsedUrl.pathname);
+  // Parse clean pathname (remove query params) using modern WHATWG URL
+  const reqUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  let pathname = decodeURIComponent(reqUrl.pathname);
 
   // Default to index.html for root
   if (pathname === '/' || pathname === '') {
