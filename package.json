@@ -1,0 +1,21 @@
+{
+  "name": "tutku-erkek-kuaforu",
+  "version": "1.0.0",
+  "description": "Tutku Erkek Kuaförü & Protez Saç Merkezi Web Sitesi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "protez-sac",
+    "erkek-kuaforu",
+    "samsun",
+    "carsamba"
+  ],
+  "author": "Tutku Erkek Kuaförü",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

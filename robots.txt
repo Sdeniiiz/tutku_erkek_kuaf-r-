@@ -1,0 +1,5 @@
+# robots.txt for Tutku Erkek Kuaförü & Protez Saç Merkezi
+User-agent: *
+Allow: /
+
+Sitemap: https://tutkuerkekkuaforturkiye.com/sitemap.xml
