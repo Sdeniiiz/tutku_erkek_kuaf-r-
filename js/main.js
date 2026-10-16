@@ -34,35 +34,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. Mobile Menu Toggle
+  // 2. Mobile Menu Toggle & Dynamic Backdrop
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
 
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'nav-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    const openMenu = () => {
+      navMenu.classList.add('open');
+      backdrop.classList.add('show');
+      document.body.classList.add('nav-open');
       const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        if (navMenu.classList.contains('open')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
+      if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+    };
+
+    const closeMenu = () => {
+      navMenu.classList.remove('open');
+      backdrop.classList.remove('show');
+      document.body.classList.remove('nav-open');
+      const icon = mobileToggle.querySelector('i');
+      if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+    };
+
+    mobileToggle.addEventListener('click', () => {
+      if (navMenu.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
 
-    // Close menu when a link is clicked
+    backdrop.addEventListener('click', closeMenu);
+
     navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        const icon = mobileToggle.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeMenu();
+      }
     });
   }
 

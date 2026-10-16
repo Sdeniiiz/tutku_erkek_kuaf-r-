@@ -226,27 +226,68 @@ strong { color: #fff; }
 
 @media (max-width: 1100px) {
   .nav-actions .btn-call { display: none; }
-  .nav-menu { gap: 22px; }
+  .nav-menu { gap: 20px; }
 }
 @media (max-width: 992px) {
   .mobile-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .nav-menu {
     position: fixed;
-    inset: 0 -100% 0 auto;
-    width: 300px;
+    top: 0; right: -100%; bottom: 0;
+    width: min(320px, 86vw);
     height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 6px;
-    padding: 40px 36px;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 85px 28px 40px;
     background: rgba(16, 16, 16, .98);
     border-left: 1px solid var(--border-color);
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.8);
     transition: var(--transition);
-    z-index: 999;
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-menu.open { right: 0; }
-  .nav-link { font-family: var(--font-heading); font-size: 1.7rem; letter-spacing: .12em; font-weight: 400; width: 100%; }
+  .nav-link {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    letter-spacing: .12em;
+    font-weight: 400;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+@media (max-width: 480px) {
+  .site-header { padding: 12px 0; }
+  .site-header .navbar { gap: 8px; }
+  .logo-img { height: 40px; }
+  .nav-actions { gap: 8px; }
+  .nav-actions .btn-primary.btn-sm { padding: 8px 14px; font-size: .75rem; letter-spacing: .1em; }
+  .mobile-toggle { width: 40px; height: 40px; font-size: 1rem; }
+}
+
+/* Nav Backdrop */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+.nav-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+body.nav-open {
+  overflow: hidden !important;
+  touch-action: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -402,8 +443,16 @@ strong { color: #fff; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; }
 .gallery-grid.mosaic { grid-template-columns: repeat(3, 1fr); }
 .gallery-grid.mosaic .gallery-item.wide { grid-column: span 2; }
-@media (max-width: 900px) { .gallery-grid.mosaic { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .gallery-grid.mosaic { grid-template-columns: 1fr; } .gallery-grid.mosaic .gallery-item.wide { grid-column: auto; } }
+@media (max-width: 900px) {
+  .gallery-grid.mosaic { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .gallery-grid.mosaic { grid-template-columns: 1fr; }
+  .gallery-grid.mosaic .gallery-item.wide { grid-column: auto; }
+  .gallery-item { height: 300px; }
+  .gallery-play-icon { width: 56px; height: 56px; font-size: 1.1rem; }
+  .filter-btn { padding: 8px 16px; font-size: .75rem; }
+}
 
 .gallery-item {
   position: relative;
@@ -765,11 +814,51 @@ textarea.form-control { border-radius: 22px; resize: vertical; }
 .reveal.visible { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: .15s; } .reveal.d2 { transition-delay: .3s; } .reveal.d3 { transition-delay: .45s; }
 
-/* Alt sayfalardaki satır içi grid düzenleri için mobil düzeltme */
-@media (max-width: 900px) {
-  section [style*="grid-template-columns: 1.1fr"],
-  section [style*="grid-template-columns: 1fr 1.2fr"] { grid-template-columns: 1fr !important; }
-  table { font-size: .85rem; }
+/* ==========================================================================
+   MASTER RESPONSIVE ENGINE (MOBILE, TABLET, LAPTOP, DESKTOP)
+   ========================================================================== */
+
+/* Universal Responsive Grid Helper */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.pricing-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+.table-responsive table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
 }
 
 /* Alt sayfaların düz renkli başlık alanını görsel arka planlı yap */
@@ -777,4 +866,182 @@ body > section:first-of-type[style*="padding: 160px"] {
   background: linear-gradient(rgba(16, 16, 16, .75), rgba(16, 16, 16, .95)), url('../images/protez-sac-uygulama-6.jpg') center 30% / cover !important;
   padding: 200px 0 90px !important;
   border-bottom: none !important;
+}
+
+/* Tablet & Mobile Adjustments (<= 992px) */
+@media (max-width: 992px) {
+  .section-padding { padding: 80px 0; }
+  .responsive-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .split { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .comparison-container { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .sch-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .contact-section-grid { grid-template-columns: 1fr !important; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+  
+  /* Auto-collapse any remaining inline 2-col grids on subpages */
+  section [style*="grid-template-columns: 1.1fr"],
+  section [style*="grid-template-columns: 1fr 1.2fr"],
+  section [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+  .section-padding { padding: 60px 0; }
+  
+  /* Hero */
+  .hero-section {
+    padding: 120px 0 60px;
+    min-height: calc(100dvh - 30px);
+  }
+  .hero-title {
+    font-size: clamp(2.8rem, 11vw, 4.4rem);
+    margin-bottom: 18px;
+  }
+  .hero-title .small {
+    font-size: .42em;
+    letter-spacing: .25em;
+    margin-top: 10px;
+  }
+  .hero-subtitle {
+    font-size: 0.98rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+  .hero-cta-group {
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+  .hero-trust-row {
+    gap: 14px 20px;
+  }
+
+  /* Subheaders */
+  .subheader,
+  body > section:first-of-type[style*="padding: 160px"],
+  body > section:first-of-type[style*="padding: 200px"] {
+    padding: 140px 0 60px !important;
+  }
+  .subheader h1 {
+    font-size: clamp(2.4rem, 8vw, 3.8rem);
+    letter-spacing: .15em;
+    margin-left: 0;
+  }
+
+  /* Lead text */
+  .lead-big {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    padding: 0 8px;
+  }
+
+  /* Buttons */
+  .btn, .btn-main {
+    padding: 12px 26px;
+    font-size: .8rem;
+    letter-spacing: .14em;
+  }
+
+  /* Double-frame decorative box on mobile */
+  .de-box-a {
+    padding: 6%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .de-box-a .d-deco-1 { top: -4px; right: -4px; }
+  .de-box-a .d-deco-2 { bottom: -4px; left: -4px; }
+
+  /* Schedule table */
+  .d-sch-table {
+    padding: 32px 24px;
+  }
+  .d-sch-table .d-deco {
+    top: 8px; left: 8px;
+  }
+  .d-sch-table h2 {
+    font-size: 2.2rem;
+  }
+  .d-sch-table .d-content {
+    font-size: 1.5rem;
+  }
+
+  /* Form controls */
+  .form-control {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    padding: 12px 18px;
+  }
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  /* Map */
+  .map-wrap {
+    height: 280px;
+    margin-top: 35px;
+  }
+
+  /* Lightbox */
+  .lightbox-modal { padding: 15px; }
+  .lightbox-media { max-height: 75vh; }
+  .lightbox-close { top: -48px; right: 0; width: 40px; height: 40px; font-size: 1.3rem; }
+
+  /* Floating WhatsApp */
+  .floating-whatsapp {
+    width: 52px; height: 52px;
+    right: 18px; bottom: 18px;
+    font-size: 1.6rem;
+  }
+  .back-to-top {
+    right: 22px; bottom: 82px;
+    width: 40px; height: 40px;
+  }
+}
+
+/* Small Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  
+  .section-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .de-separator, .gold-divider { width: 180px; margin: 16px auto 30px; }
+  
+  .services-grid { grid-template-columns: 1fr; gap: 24px; }
+  .gallery-grid.mosaic { grid-template-columns: 1fr; gap: 14px; }
+  .gallery-item { height: 280px; }
+  
+  .stats-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom div:last-child {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .d-sch-table {
+    padding: 24px 16px;
+  }
+  .d-sch-table .d-deco {
+    display: none; /* Avoid any potential 8px horizontal overflow */
+  }
+}
+
+/* Extra Small Mobile (<= 360px - e.g. iPhone SE 1st gen / Galaxy Fold) */
+@media (max-width: 360px) {
+  .container { padding: 0 12px; }
+  .logo-img { height: 34px; }
+  .nav-actions .btn-primary.btn-sm { padding: 6px 10px; font-size: .7rem; }
+  .hero-title { font-size: 2.5rem; }
+  .btn, .btn-main { padding: 11px 18px; font-size: .75rem; }
 }
