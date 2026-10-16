@@ -107,10 +107,10 @@ const server = http.createServer((req, res) => {
 
   if (['.jpg', '.jpeg', '.png', '.svg', '.webp', '.mp4'].includes(ext)) {
     headers['Cache-Control'] = 'public, max-age=31536000, immutable';
-  } else if (['.css', '.js'].includes(ext)) {
+  } else if (process.env.RENDER && ['.css', '.js'].includes(ext)) {
     headers['Cache-Control'] = 'public, max-age=2592000';
   } else {
-    headers['Cache-Control'] = 'no-cache';
+    headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
   }
 
   res.writeHead(200, headers);

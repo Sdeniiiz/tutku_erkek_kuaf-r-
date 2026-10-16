@@ -45,14 +45,24 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 body {
   background: var(--bg);
   color: var(--text-secondary);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.75;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
+  position: relative;
 }
 a { color: inherit; text-decoration: none; transition: var(--transition); }
 img, video { max-width: 100%; height: auto; display: block; }
@@ -139,7 +149,9 @@ strong { color: #fff; }
   text-transform: uppercase;
   cursor: pointer;
   transition: var(--transition);
-  white-space: nowrap;
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 .btn-primary, .btn-main {
   background: var(--primary);
@@ -172,6 +184,8 @@ strong { color: #fff; }
   position: fixed;
   top: 0; left: 0;
   width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   z-index: 1000;
   padding: 26px 0;
   background: transparent;
@@ -179,12 +193,21 @@ strong { color: #fff; }
 }
 .site-header.scrolled {
   padding: 15px 0;
-  background: rgba(236, 205, 4, 0.92);
+  background: rgba(16, 16, 16, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+  border-bottom: 1px solid rgba(var(--primary-rgb), 0.2);
 }
-.navbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 .logo-link { display: flex; align-items: center; }
 .logo-img { height: 54px; width: auto; transition: var(--transition); }
 .site-header.scrolled .logo-img { height: 44px; }
@@ -300,6 +323,10 @@ body.nav-open {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  overflow: clip;
+  contain: paint;
+  width: 100%;
+  max-width: 100%;
   padding: 140px 0 120px;
   text-align: center;
 }
@@ -338,6 +365,11 @@ body.nav-open {
   pointer-events: none;
   display: flex;
   animation: loop 60s linear infinite;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  overflow: clip;
+  contain: paint;
 }
 .wm {
   font-family: var(--font-heading);
@@ -682,8 +714,24 @@ body.nav-open {
 /* --------------------------------------------------------------------------
    İLETİŞİM & FORM
    -------------------------------------------------------------------------- */
-.contact-section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+.contact-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+  min-width: 0;
+  max-width: 100%;
+}
+.contact-section-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
 @media (max-width: 992px) { .contact-section-grid { grid-template-columns: 1fr; } }
+.contact-card-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 .contact-info-card, .appointment-form-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
@@ -943,9 +991,41 @@ body > section:first-of-type[style*="padding: 160px"] {
 
   /* Buttons */
   .btn, .btn-main {
-    padding: 12px 26px;
-    font-size: .8rem;
-    letter-spacing: .14em;
+    padding: 12px 18px;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  /* Contact & Appointment Cards */
+  .contact-info-card, .appointment-form-card {
+    padding: 24px 14px;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  .contact-card-actions {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .contact-card-actions .btn {
+    width: 100% !important;
+    flex: none !important;
+    text-align: center;
+  }
+  .info-item-group {
+    margin: 20px 0;
+    gap: 16px;
+  }
+  .info-item {
+    gap: 12px;
+  }
+  .info-text p, .info-text a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   /* Double-frame decorative box on mobile */
