@@ -186,29 +186,67 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const barber = document.getElementById('clientBarber')?.value || 'İlyas Şahin';
+      const targetNumber = (barber.includes('Metin') || barber === 'metin') ? '905534155336' : '905467696868';
+
       // Format WhatsApp Message
       let msg = `*TUTKU ERKEK KUAFÖRÜ & PROTEZ SAÇ MERKEZİ - RANDEVU TALEBİ*\n\n`;
       msg += `👤 *Müşteri:* ${name}\n`;
       msg += `📞 *Telefon:* ${phone}\n`;
       msg += `✂️ *İstenen Hizmet:* ${service || 'Protez Saç & Bakım'}\n`;
+      msg += `💈 *Yetkili:* ${barber}\n`;
       if (date) msg += `📅 *Tercih Edilen Tarih:* ${date}\n`;
       if (time) msg += `⏰ *Tercih Edilen Saat:* ${time}\n`;
       if (note) msg += `📝 *Ekstra Not:* ${note}\n`;
       msg += `\nMerkezinizden randevu ve detaylı bilgi almak istiyorum.`;
 
       const encodedMsg = encodeURIComponent(msg);
-      const whatsappUrl = `https://wa.me/905467696868?text=${encodedMsg}`;
+      const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
 
       // Show user success confirmation
       const alertBox = document.getElementById('formSuccessMsg');
       if (alertBox) {
         alertBox.style.display = 'block';
-        alertBox.innerHTML = `Randevu talebiniz hazırlandı! WhatsApp üzerinden anında iletiliyor...`;
+        alertBox.innerHTML = `Randevu talebiniz hazırlandı! ${barber} için WhatsApp üzerinden anında iletiliyor...`;
       }
 
       setTimeout(() => {
         window.open(whatsappUrl, '_blank');
       }, 700);
+    });
+  }
+
+  // 6. Header Phone Dropdown Toggle
+  const phoneDropWrap = document.querySelector('.phone-dropdown-wrap');
+  const phoneDropToggle = document.getElementById('phoneDropdownToggle');
+  if (phoneDropWrap && phoneDropToggle) {
+    phoneDropToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = phoneDropWrap.classList.toggle('active');
+      phoneDropToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!phoneDropWrap.contains(e.target)) {
+        phoneDropWrap.classList.remove('active');
+        phoneDropToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // 7. Floating WhatsApp Dual Selector Popup
+  const waWrap = document.querySelector('.floating-whatsapp-wrap');
+  const waBtn = document.getElementById('floatingWhatsappBtn');
+  const waPopup = document.getElementById('whatsappPopup');
+  if (waWrap && waBtn && waPopup) {
+    waBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      waPopup.classList.toggle('active');
+    });
+    document.addEventListener('click', (e) => {
+      if (!waWrap.contains(e.target)) {
+        waPopup.classList.remove('active');
+      }
     });
   }
 });

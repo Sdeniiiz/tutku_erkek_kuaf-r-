@@ -58,6 +58,10 @@
     <div class="container navbar">
       <a href="index.html" class="logo-link" aria-label="Tutku Erkek Kuaförü Ana Sayfa">
         <img src="images/logo.png" alt="Tutku Erkek Kuaförü &amp; Protez Saç Merkezi" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-brand">TUTKU</span>
+          <span class="logo-desc">Erkek Kuaförü &amp; Protez Saç Merkezi</span>
+        </div>
       </a>
       <nav class="nav-menu">
         <a href="index.html" class="nav-link active">Ana Sayfa</a>
@@ -66,9 +70,47 @@
         <a href="galeri.html" class="nav-link">Galeri</a>
         <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
         <a href="iletisim.html" class="nav-link">İletişim</a>
+        <div class="nav-drawer-footer">
+          <div class="drawer-contact-title">İletişim &amp; Randevu</div>
+          <a href="tel:05534155336" class="drawer-phone-link">
+            <i class="fa fa-phone"></i>
+            <span>
+              <strong>Metin Toroman</strong>
+              <small>0553 415 53 36</small>
+            </span>
+          </a>
+          <a href="tel:05467696868" class="drawer-phone-link">
+            <i class="fa fa-phone"></i>
+            <span>
+              <strong>İlyas Şahin</strong>
+              <small>0546 769 68 68</small>
+            </span>
+          </a>
+        </div>
       </nav>
       <div class="nav-actions">
-        <a href="tel:05467696868" class="btn btn-outline btn-sm btn-call"><i class="fa fa-phone"></i> 0546 769 68 68</a>
+        <div class="phone-dropdown-wrap">
+          <button class="btn btn-outline btn-sm btn-call" id="phoneDropdownToggle" aria-label="İletişim Numaraları">
+            <i class="fa fa-phone"></i> İletişim <i class="fa fa-chevron-down" style="font-size: .65em; margin-left: 4px;"></i>
+          </button>
+          <div class="phone-dropdown-menu">
+            <div class="phone-dropdown-header">İletişim Hatlarımız</div>
+            <a href="tel:05534155336" class="phone-dropdown-item">
+              <div class="phone-item-icon"><i class="fa fa-phone"></i></div>
+              <div class="phone-item-info">
+                <span class="phone-item-name">Metin Toroman</span>
+                <span class="phone-item-num">0553 415 53 36</span>
+              </div>
+            </a>
+            <a href="tel:05467696868" class="phone-dropdown-item">
+              <div class="phone-item-icon"><i class="fa fa-phone"></i></div>
+              <div class="phone-item-info">
+                <span class="phone-item-name">İlyas Şahin</span>
+                <span class="phone-item-num">0546 769 68 68</span>
+              </div>
+            </a>
+          </div>
+        </div>
         <a href="https://wa.me/905467696868?text=Merhaba,%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-primary btn-sm">Randevu</a>
         <button class="mobile-toggle" aria-label="Menü"><i class="fa fa-bars"></i></button>
       </div>
@@ -90,8 +132,8 @@
     <div class="container hero-content">
       <div class="hero-badge reveal">Samsun · Çarşamba</div>
       <h1 class="hero-title reveal d1">
-         Erkek Kuaförü
-        <span class="small">&amp; Protez Saç</span>
+        <span class="hero-brand-name">TUTKU</span> ERKEK KUAFÖRÜ
+        <span class="small">&amp; Protez Saç Merkezi</span>
       </h1>
       <p class="hero-subtitle reveal d2">
         Dökülen ve seyrelen saçlarınıza ameliyatsız, acısız bir çözüm. Kişiye özel hazırlanan protez saç ile aynı gün içinde doğal ve gür bir görünüme kavuşun.
@@ -297,7 +339,13 @@
           <!-- DİKKAT: Çalışma saatleri doğrulanmalı / işletme sahibine göre güncellenmeli -->
           <div class="d-col"><div class="d-title">Pazartesi - Cumartesi</div><div class="d-content">08:30 - 20:30</div></div>
           <div class="d-col"><div class="d-title">Pazar</div><div class="d-content">Randevu ile</div></div>
-          <div class="d-col"><div class="d-title">Randevu Hattı</div><div class="d-content"><a href="tel:05467696868">0546 769 68 68</a></div></div>
+          <div class="d-col">
+            <div class="d-title">Randevu Hatları</div>
+            <div class="d-content d-phone-group">
+              <a href="tel:05534155336"><small>Metin Toroman:</small> 0553 415 53 36</a>
+              <a href="tel:05467696868"><small>İlyas Şahin:</small> 0546 769 68 68</a>
+            </div>
+          </div>
           <div class="d-deco"></div>
         </div>
 
@@ -305,7 +353,13 @@
           <h2>Konum</h2>
           <div class="de-separator"></div>
           <div class="d-col"><div class="d-title">Adres</div><div class="d-content">Çarşamba / Samsun</div><div style="font-size:.88rem; color: var(--text-muted); margin-top: 4px;">Çay Mah. 44. Sok. No: 13/C</div></div>
-          <div class="d-col"><div class="d-title">Telefon</div><div class="d-content"><a href="tel:05467696868">+90 546 769 68 68</a></div></div>
+          <div class="d-col">
+            <div class="d-title">Telefon Hatlarımız</div>
+            <div class="d-content d-phone-group">
+              <a href="tel:05534155336"><small>Metin T.:</small> 0553 415 53 36</a>
+              <a href="tel:05467696868"><small>İlyas Ş.:</small> 0546 769 68 68</a>
+            </div>
+          </div>
           <div class="d-col"><div class="d-title">Instagram</div><div class="d-content" style="font-size: 1.35rem;"><a href="https://www.instagram.com/tutkuerkekkuafor_protzsacmrkzi/" target="_blank" rel="noopener">@tutkuerkekkuafor</a></div></div>
           <div class="d-deco"></div>
         </div>
@@ -349,6 +403,13 @@
               <input type="tel" id="clientPhone" class="form-control" placeholder="05xx xxx xx xx" required>
             </div>
             <div class="form-group">
+              <label class="form-label" for="clientBarber">Görüşülecek Yetkili</label>
+              <select id="clientBarber" class="form-control">
+                <option value="Metin Toroman">Metin Toroman (0553 415 53 36)</option>
+                <option value="İlyas Şahin" selected>İlyas Şahin (0546 769 68 68)</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label class="form-label" for="clientService">Hizmet</label>
               <select id="clientService" class="form-control">
                 <option>Protez Saç Uygulaması</option>
@@ -381,11 +442,23 @@
             </div>
             <div class="info-item">
               <div class="info-icon"><i class="fa fa-phone"></i></div>
-              <div class="info-text"><h4>Telefon</h4><p><a href="tel:05467696868">0546 769 68 68</a></p></div>
+              <div class="info-text">
+                <h4>Telefon</h4>
+                <div class="expert-phone-row">
+                  <div class="expert-phone"><span class="expert-name">Metin Toroman:</span> <a href="tel:05534155336">0553 415 53 36</a></div>
+                  <div class="expert-phone"><span class="expert-name">İlyas Şahin:</span> <a href="tel:05467696868">0546 769 68 68</a></div>
+                </div>
+              </div>
             </div>
             <div class="info-item">
               <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
-              <div class="info-text"><h4>WhatsApp</h4><p><a href="https://wa.me/905467696868" target="_blank" rel="noopener">+90 546 769 68 68</a></p></div>
+              <div class="info-text">
+                <h4>WhatsApp</h4>
+                <div class="expert-phone-row">
+                  <div class="expert-phone"><span class="expert-name">Metin Toroman:</span> <a href="https://wa.me/905534155336" target="_blank" rel="noopener">+90 553 415 53 36</a></div>
+                  <div class="expert-phone"><span class="expert-name">İlyas Şahin:</span> <a href="https://wa.me/905467696868" target="_blank" rel="noopener">+90 546 769 68 68</a></div>
+                </div>
+              </div>
             </div>
             <div class="info-item">
               <div class="info-icon"><i class="fab fa-instagram"></i></div>
@@ -439,9 +512,11 @@
         <div class="footer-col">
           <h4>İletişim</h4>
           <div class="footer-links">
-            <span>Çay Mah. 44. Sok. No: 13/C<br>Çarşamba / Samsun</span>
-            <a href="tel:05467696868">0546 769 68 68</a>
-            <a href="https://wa.me/905467696868" target="_blank" rel="noopener">WhatsApp Randevu</a>
+            <span><i class="fa fa-map-pin text-gold"></i> Çay Mah. 44. Sok. No: 13/C<br>Çarşamba / Samsun</span>
+            <a href="tel:05534155336"><i class="fa fa-phone text-gold"></i> Metin Toroman: 0553 415 53 36</a>
+            <a href="tel:05467696868"><i class="fa fa-phone text-gold"></i> İlyas Şahin: 0546 769 68 68</a>
+            <a href="https://wa.me/905534155336" target="_blank" rel="noopener"><i class="fab fa-whatsapp text-gold"></i> WhatsApp (Metin Toroman)</a>
+            <a href="https://wa.me/905467696868" target="_blank" rel="noopener"><i class="fab fa-whatsapp text-gold"></i> WhatsApp (İlyas Şahin)</a>
           </div>
         </div>
       </div>
@@ -453,7 +528,33 @@
   </footer>
 
   <a href="#" class="back-to-top" aria-label="Yukarı çık"><i class="fa fa-arrow-up"></i></a>
-  <a href="https://wa.me/905467696868?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- Floating WhatsApp Dual Contact Widget -->
+  <div class="floating-whatsapp-wrap">
+    <button class="floating-whatsapp" id="floatingWhatsappBtn" aria-label="WhatsApp İletişim">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+    <div class="whatsapp-popup" id="whatsappPopup">
+      <div class="wa-popup-header">
+        <strong>WhatsApp Randevu Hattı</strong>
+        <span>Görüşmek istediğiniz uzmanı seçiniz:</span>
+      </div>
+      <a href="https://wa.me/905534155336?text=Merhaba,%20Metin%20Bey,%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" class="wa-popup-item">
+        <i class="fab fa-whatsapp"></i>
+        <div>
+          <strong>Metin Toroman</strong>
+          <small>0553 415 53 36</small>
+        </div>
+      </a>
+      <a href="https://wa.me/905467696868?text=Merhaba,%20%C4%B0lyas%20Bey,%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" class="wa-popup-item">
+        <i class="fab fa-whatsapp"></i>
+        <div>
+          <strong>İlyas Şahin</strong>
+          <small>0546 769 68 68</small>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-content-wrap">
