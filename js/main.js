@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const filter = btn.getAttribute('data-filter');
 
         galleryItems.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          const cats = (item.getAttribute('data-category') || '').split(/\s+/);
+          if (filter === 'all' || cats.includes(filter)) {
             item.style.display = 'block';
             setTimeout(() => {
               item.style.opacity = '1';
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const img = document.createElement('img');
           img.src = src;
-          img.alt = 'Tutku Erkek Kuaförü & Protez Saç Uygulaması';
+          img.alt = 'Tutku Erkek Kuaförü & Protez Saç Merkezi';
           img.className = 'lightbox-media';
           lightboxContainer.appendChild(img);
         }
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeLightbox = () => {
       lightbox.classList.remove('active');
       lightboxContainer.innerHTML = '';
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     };
 
     lightboxClose.addEventListener('click', closeLightbox);
