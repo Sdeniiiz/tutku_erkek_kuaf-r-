@@ -187,15 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const barber = document.getElementById('clientBarber')?.value || 'İlyas Şahin';
-      const targetNumber = (barber.includes('Metin') || barber === 'metin') ? '905534155336' : '905467696868';
+      const targetNumber = '905467696868';
 
       // Format WhatsApp Message
       let msg = `*TUTKU ERKEK KUAFÖRÜ & PROTEZ SAÇ MERKEZİ - RANDEVU TALEBİ*\n\n`;
       msg += `👤 *Müşteri:* ${name}\n`;
       msg += `📞 *Telefon:* ${phone}\n`;
       msg += `✂️ *İstenen Hizmet:* ${service || 'Protez Saç & Bakım'}\n`;
-      msg += `💈 *Yetkili:* ${barber}\n`;
       if (date) msg += `📅 *Tercih Edilen Tarih:* ${date}\n`;
       if (time) msg += `⏰ *Tercih Edilen Saat:* ${time}\n`;
       if (note) msg += `📝 *Ekstra Not:* ${note}\n`;
@@ -208,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const alertBox = document.getElementById('formSuccessMsg');
       if (alertBox) {
         alertBox.style.display = 'block';
-        alertBox.innerHTML = `Randevu talebiniz hazırlandı! ${barber} için WhatsApp üzerinden anında iletiliyor...`;
+        alertBox.innerHTML = `Randevu talebiniz hazırlandı! WhatsApp hattımıza anında iletiliyor...`;
       }
 
       setTimeout(() => {
