@@ -334,7 +334,18 @@ strong { color: #fff; }
   flex-shrink: 0;
 }
 
-/* Phone Dropdown */
+/* Phone Dropdown & Navbar Social / Price WhatsApp Buttons */
+.nav-social-icon { width: 40px; height: 40px; font-size: 1.05rem; flex-shrink: 0; }
+.price-wa-link {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(37, 211, 102, 0.14); border: 1px solid rgba(37, 211, 102, 0.45);
+  color: #25d366; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; flex-shrink: 0; transition: var(--transition);
+}
+.price-wa-link:hover {
+  background: #25d366; border-color: #25d366; color: #fff;
+  transform: translateY(-2px) scale(1.06); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+}
 .phone-dropdown-wrap {
   position: relative;
   display: inline-block;
@@ -534,7 +545,8 @@ strong { color: #fff; }
   .logo-img { height: 38px; }
   .logo-brand { font-size: 1.25rem; letter-spacing: .08em; }
   .logo-desc { font-size: .52rem; white-space: normal; line-height: 1.15; max-width: 138px; }
-  .nav-actions { gap: 8px; }
+  .nav-actions { gap: 6px; }
+  .nav-social-icon { width: 36px; height: 36px; font-size: .95rem; }
   .nav-actions .btn-primary.btn-sm { padding: 8px 12px; font-size: .72rem; letter-spacing: .08em; }
   .mobile-toggle { width: 40px; height: 40px; font-size: 1rem; }
 }
@@ -1536,6 +1548,7 @@ body > section:first-of-type[style*="padding: 160px"] {
   .logo-img { height: 34px; }
   .logo-brand { font-size: 1.12rem; }
   .logo-desc { font-size: .48rem; max-width: 118px; }
+  .nav-social-icon { width: 32px; height: 32px; font-size: .88rem; }
   .nav-actions .btn-primary.btn-sm { padding: 6px 10px; font-size: .68rem; }
   .mobile-toggle { width: 36px; height: 36px; }
   .hero-brand-name { font-size: 2.6rem; }
