@@ -862,6 +862,11 @@ body.nav-open {
   box-shadow: 0 0 0 10px rgba(var(--primary-rgb), .2);
 }
 .gallery-item:hover .gallery-play-icon { transform: translate(-50%, -50%) scale(1.1); }
+.gallery-item.is-playing .gallery-play-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.75);
+  pointer-events: none;
+}
 .gallery-item[data-type="video"] .gallery-item-overlay { justify-content: flex-end; }
 .gallery-item[data-type="video"] .gallery-item-overlay > * { opacity: 1; transform: none; }
 .gallery-item[data-type="video"] { }
