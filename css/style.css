@@ -1326,6 +1326,9 @@ textarea.form-control { border-radius: 22px; resize: vertical; }
 }
 
 /* Alt sayfaların düz renkli başlık alanını görsel arka planlı yap */
+.page-video-hero { position: relative; padding: 200px 0 100px; text-align: center; overflow: hidden; border-bottom: none; }
+.page-video-hero > .container { position: relative; z-index: 3; }
+@media (max-width: 768px) { .page-video-hero { padding: 140px 0 70px; } }
 body > section:first-of-type[style*="padding: 160px"] {
   background: linear-gradient(rgba(16, 16, 16, .75), rgba(16, 16, 16, .95)), url('../images/protez-sac-uygulama-6.jpg') center 30% / cover !important;
   padding: 200px 0 90px !important;
