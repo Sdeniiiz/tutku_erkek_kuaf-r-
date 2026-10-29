@@ -813,14 +813,15 @@ body.nav-open {
 @media (max-width: 560px) {
   .gallery-grid.mosaic { grid-template-columns: 1fr; }
   .gallery-grid.mosaic .gallery-item.wide { grid-column: auto; }
-  .gallery-item { height: 300px; }
+  .gallery-item { height: auto; aspect-ratio: 9 / 14; }
   .gallery-play-icon { width: 56px; height: 56px; font-size: 1.1rem; }
   .filter-btn { padding: 8px 16px; font-size: .75rem; }
 }
 
 .gallery-item {
   position: relative;
-  height: 400px;
+  height: auto;
+  aspect-ratio: 9 / 14;
   border-radius: var(--radius);
   overflow: hidden;
   background: #000;
@@ -1518,7 +1519,7 @@ body > section:first-of-type[style*="padding: 160px"] {
   
   .services-grid { grid-template-columns: 1fr; gap: 24px; }
   .gallery-grid.mosaic { grid-template-columns: 1fr; gap: 14px; }
-  .gallery-item { height: 280px; }
+  .gallery-item { height: auto; aspect-ratio: 9 / 14; }
   
   .stats-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
   
